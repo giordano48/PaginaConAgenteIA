@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espacio Seguro U | No Estás Sola</title>
+    <style>
+        /* --- VARIABLES Y RESET --- */
+        :root {
+            --primary: #6a1b9a; /* Violeta fuerte */
+            --secondary: #9c4dcc; /* Violeta claro */
+            --accent: #ff7043; /* Naranja para alertas/acción */
+            --text: #333;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            background: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Botón de seguridad esencial en sitios de ayuda */
+        .btn-exit {
+            background-color: #d32f2f;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .btn-exit:hover {
+            background-color: #b71c1c;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 4rem 5%;
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-hero {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-hero:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- SECCIONES GENERALES --- */
+        section {
+            padding: 4rem 5%;
+        }
+
+        h2 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+
+        /* --- IDENTIFICAR EL ACOSO --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--secondary);
+            transition: transform 0.3s ease;
+            opacity: 0; /* Para animación JS */
+            transform: translateY(20px);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* --- QUÉ HACER (TIMELINE) --- */
+        .steps-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            background: var(--white);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background: var(--accent);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* --- RECURSOS --- */
+        .resources {
+            background-color: #e1bee7; /* Fondo suave */
+            text-align: center;
+        }
+
+        .resource-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            margin: 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- ANIMACIONES --- */
+        .fade-in-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">EspacioSeguro U</div>
+     
+    </nav>
+
+    <header class="hero">
+        <h1>No es tu culpa, no estás sola</h1>
+        <p>Guía de apoyo para estudiantes universitarias frente al acoso sexual. Aprende a identificarlo, conoce tus derechos y descubre qué hacer.</p>
+        <a href="#que-hacer" class="btn-hero">¿Qué debo hacer ahora?</a>
+    </header>
+
+    <section id="identificar">
+        <h2>¿Cómo identificar el acoso?</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">El acoso en la universidad no es siempre físico. Puede venir de profesores, administrativos o compañeros.</p>
+        
+        <div class="grid-cards">
+            <div class="card">
+                <h3>Verbal</h3>
+                <p>Comentarios sobre tu cuerpo, chistes sexuales ofensivos, invitaciones insistentes a salir después de que dijiste "no".</p>
+            </div>
+            <div class="card">
+                <h3>Digital (Ciberacoso)</h3>
+                <p>Envío de fotos no solicitadas, mensajes persistentes en redes sociales, difusión de rumores o imágenes íntimas.</p>
+            </div>
+            <div class="card">
+                <h3>De Poder (Chantaje)</h3>
+                <p>Amenazas de reprobarte o promesas de mejores notas a cambio de favores sexuales o citas (Quid Pro Quo).</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="que-hacer" style="background-color: var(--bg-light);">
+        <h2>Pasos a Seguir</h2>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h3>Prioriza tu seguridad</h3>
+                    <p>Si estás en peligro inmediato, aléjate de la situación y busca un lugar público o llama a emergencias.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h3>No borres la evidencia</h3>
+                    <p>Guarda capturas de pantalla, mensajes, correos y audios. Anota fechas, horas y testigos de los incidentes presenciales.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h3>Rompe el silencio (Red de Apoyo)</h3>
+                    <p>Cuéntaselo a alguien de confianza: una amiga, familiar o consejera estudiantil. No tienes que cargar esto sola.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <h3>Denuncia Institucional</h3>
+                    <p>Acude a la Defensoría Universitaria o Bienestar Estudiantil. Tienes derecho a estudiar en un ambiente libre de violencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resources">
+        <h2>Líneas de Ayuda</h2>
+        <p>Estos son números confidenciales y gratuitos (Ejemplos):</p>
+        <div style="margin-top: 2rem;">
+            <a href="#" class="resource-btn">📞 Emergencias: 911</a>
+            <a href="#" class="resource-btn">💜 Línea Mujer: 155 (Bolivia)</a>
+            <a href="#" class="resource-btn">⚖️ Defensoría Universitaria</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>⚠️ Esta página es una herramienta informativa. No sustituye el asesoramiento legal o psicológico profesional.</p>
+        <p>&copy; 2025 Iniciativa Universitaria Segura</p>
+    </footer>
+
+    <script>
+        // 1. Función de Salida Rápida (Seguridad)
+        function quickExit() {
+            // Redirige a Google y reemplaza el historial para que no puedan volver atrás
+            window.location.replace("https://www.google.com");
+        }
+
+        // Detectar tecla ESC para salida rápida
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                quickExit();
+            }
+        });
+
+        // 2. Animación al hacer Scroll (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-visible');
+                    observer.unobserve(entry.target); // Dejar de observar una vez animado
+                }
+            });
+        }, observerOptions);
+
+        // Seleccionar todas las tarjetas para animar
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+
+
+
+
+   
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+	createChat({
+	webhookUrl: 'https://giorda.app.n8n.cloud/webhook/4365f704-11a8-41d1-8820-d89aeb36b686/chat',
+	webhookConfig: {
+		method: 'POST',
+		headers: {}
+	},
+	target: '#n8n-chat',
+	mode: 'window',
+	chatInputKey: 'chatInput',
+	chatSessionKey: 'sessionId',
+	loadPreviousSession: true,
+	metadata: {},
+	showWelcomeScreen: false,
+	defaultLanguage: 'en',
+	initialMessages: [
+		'hola! 👋',
+		'Necesitas o tienes duda sobre algo?'
+	],
+	i18n: {
+		en: {
+			title: 'Hola Como estas! 👋',
+			subtitle: "Estoy aqui para ti 24/7.",
+			footer: '',
+			getStarted: 'Nueva conversacion',
+			inputPlaceholder: 'escribe tu pregunta..',
+		},
+	},
+	enableStreaming: false,
+});
+
+
+
+
+</script
+
+
+
+</body>
+</html>
